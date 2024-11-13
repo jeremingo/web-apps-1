@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --exec npm start",
     "start": "node app.js"
   },
   "repository": {
@@ -19,5 +20,8 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
