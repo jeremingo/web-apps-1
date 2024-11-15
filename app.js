@@ -13,6 +13,10 @@ db.on('open', () => { console.log('connected to mongo') });
 const app = express();
 const port = process.env.PORT;
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
+app.use(bodyParser.json());
+
 app.use('/', indexRouter);
 app.use('/post', postsRouter);
 
