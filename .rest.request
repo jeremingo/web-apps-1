@@ -1,0 +1,15 @@
+
+### Get all posts
+
+GET http://localhost:3000/post
+
+
+### Add post
+
+POST http://localhost:3000/post
+Content-Type: application/json
+
+{
+    "message": "aoeaoeu",
+    "sender": "jeremingo"
+}
