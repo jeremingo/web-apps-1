@@ -2,7 +2,9 @@ const Post = require('../models/post');
 
 const getPosts = async (req, res) => {
     try {
-        res.json(await Post.find());
+        res.json(await Post.find({
+            ...req.query.sender && { 'sender': req.query.sender}
+        }));
     } catch (err) {
         res.status(404).json({ error: err.message });
     }
