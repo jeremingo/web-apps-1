@@ -4,6 +4,16 @@
 GET http://localhost:3000/post
 
 
+### Get posts by sender
+
+GET http://localhost:3000/post?sender=jeremingo
+
+
+### Get post by ID
+
+GET http://localhost:3000/post/67378283ad54a9e1b401b342
+
+
 ### Add post
 
 POST http://localhost:3000/post
