@@ -1,42 +1,58 @@
+######### Posts API
 
-### Get all posts
-
+### Get All Posts
 GET http://localhost:3000/post
 
-
-### Get posts by sender
-
+### Get Posts by Sender
 GET http://localhost:3000/post?sender=jeremingo
 
+### Get Post by ID
+GET http://localhost:3000/post/673a496739d1bdff2af905f1
 
-### Get post by ID
-
-GET http://localhost:3000/post/67378283ad54a9e1b401b342
-
-
-### Add post
-
+######### Add Post
 POST http://localhost:3000/post
 Content-Type: application/json
 
 {
-    "message": "aoeaoeu",
-    "sender": "jeremingo"
+  "message": "This is the message of the sample post.",
+  "sender": "Ohadi"
 }
+
+
+######### Update Specific Post
+PUT http://localhost:3000/post/673a496739d1bdff2af905f1
+Content-Type: application/json
+
+{
+  "message": "Updated Post message",
+  "sender": "Updated sender"
+}
+
+######### Comments API
 
 ### Get All Comments
 GET http://localhost:3000/comments
 
 ### Get Comments by Post ID
-GET http://localhost:3000/comments/post/<post_id>
+GET http://localhost:3000/comments/post/673a496739d1bdff2af905f1
 
-### Update a Comment
-PUT http://localhost:3000/comments/<comment_id>
+### Add Comment
+POST http://localhost:3000/comments
 Content-Type: application/json
 
 {
-  "content": "Updated comment content."
+  "postId": "673a496739d1bdff2af905f1",
+  "content": "This is another comment on the post.",
+  "sender": "jeremingo"
+}
+
+### Update a Comment
+PUT http://localhost:3000/comments/673a4b6792f54b1af60dac18
+Content-Type: application/json
+
+{
+  "content": "Updated comment message."
 }
 
 ### Delete a Comment
-DELETE http://localhost:3000/comments/<comment_id>
+DELETE http://localhost:3000/comments/673a4b6792f54b1af60dac18
