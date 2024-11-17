@@ -23,3 +23,20 @@ Content-Type: application/json
     "message": "aoeaoeu",
     "sender": "jeremingo"
 }
+
+### Get All Comments
+GET http://localhost:3000/comments
+
+### Get Comments by Post ID
+GET http://localhost:3000/comments/post/<post_id>
+
+### Update a Comment
+PUT http://localhost:3000/comments/<comment_id>
+Content-Type: application/json
+
+{
+  "content": "Updated comment content."
+}
+
+### Delete a Comment
+DELETE http://localhost:3000/comments/<comment_id>
