@@ -9,18 +9,10 @@ exports.addComment = async (req, res) => {
   }
 };
 
-exports.getAllComments = async (req, res) => {
+exports.getComments = async (req, res) => {
   try {
-    const comments = await Comment.find();
-    res.status(200).json(comments);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-exports.getCommentsByPostId = async (req, res) => {
-  try {
-    const comments = await Comment.find({ postId: req.params.postId });
+    const filter = req.params.postId ? { postId: req.params.postId } : {}; // Filter by postId if provided
+    const comments = await Comment.find(filter);
     res.status(200).json(comments);
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -7,7 +7,7 @@ GET http://localhost:3000/post
 GET http://localhost:3000/post?sender=jeremingo
 
 ### Get Post by ID
-GET http://localhost:3000/post/673a496739d1bdff2af905f1
+GET http://localhost:3000/post/673b154e0001c161b0de4454
 
 ######### Add Post
 POST http://localhost:3000/post
@@ -15,12 +15,12 @@ Content-Type: application/json
 
 {
   "message": "This is the message of the sample post.",
-  "sender": "Ohadi"
+  "sender": "bobo"
 }
 
 
 ######### Update Specific Post
-PUT http://localhost:3000/post/673a496739d1bdff2af905f1
+PUT http://localhost:3000/post/673b154e0001c161b0de4454
 Content-Type: application/json
 
 {
@@ -30,24 +30,25 @@ Content-Type: application/json
 
 ######### Comments API
 
+
 ### Get All Comments
 GET http://localhost:3000/comments
 
 ### Get Comments by Post ID
-GET http://localhost:3000/comments/post/673a496739d1bdff2af905f1
+GET http://localhost:3000/comments/673b154e0001c161b0de4454
 
 ### Add Comment
 POST http://localhost:3000/comments
 Content-Type: application/json
 
 {
-  "postId": "673a496739d1bdff2af905f1",
+  "postId": "673b157e0001c161b0de445a",
   "content": "This is another comment on the post.",
   "sender": "jeremingo"
 }
 
 ### Update a Comment
-PUT http://localhost:3000/comments/673a4b6792f54b1af60dac18
+PUT http://localhost:3000/comments/673b15850001c161b0de445c
 Content-Type: application/json
 
 {
@@ -55,4 +56,4 @@ Content-Type: application/json
 }
 
 ### Delete a Comment
-DELETE http://localhost:3000/comments/673a4b6792f54b1af60dac18
+DELETE http://localhost:3000/comments/673b15850001c161b0de445c
