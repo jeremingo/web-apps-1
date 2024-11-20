@@ -1,8 +1,10 @@
-const dotenv = require('dotenv').config();
 const express = require('express');
+
+require('dotenv').config();
 
 const indexRouter = require('./routes');
 const postsRouter = require('./routes/post');
+const commentRouter = require('./routes/comment');
 
 const mongoose = require('mongoose');
 mongoose.connect(process.env.DATABASE_URL);
@@ -19,6 +21,7 @@ app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/post', postsRouter);
+app.use('/comments', commentRouter);
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`);
