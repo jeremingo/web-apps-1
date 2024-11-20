@@ -1,6 +1,6 @@
 const express = require('express');
 
-env.config(); 
+require('dotenv').config();
 
 const indexRouter = require('./routes');
 const postsRouter = require('./routes/post');
