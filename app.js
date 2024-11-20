@@ -1,5 +1,7 @@
 const express = require('express');
 
+env.config(); 
+
 const indexRouter = require('./routes');
 const postsRouter = require('./routes/post');
 const commentRouter = require('./routes/comment');
