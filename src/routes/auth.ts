@@ -19,12 +19,31 @@ import authController from "../controllers/auth";
 *       bearerFormat: JWT
 */
 
-
 /**
 * @swagger
 * components:
 *   schemas:
 *     User:
+*       type: object
+*       required:
+*         - email
+*         - password
+*         - username
+*       properties:
+*         email:
+*           type: string
+*           description: The user email
+*         password:
+*           type: string
+*           description: The user password
+*         username:
+*           type: string
+*           description: The user username
+*       example:
+*         email: 'bob@gmail.com'
+*         password: '123456'
+*         username: 'bob123'
+*     LoginRequest:
 *       type: object
 *       required:
 *         - email
@@ -45,7 +64,7 @@ import authController from "../controllers/auth";
 * @swagger
 * /auth/register:
 *   post:
-*     summary: registers a new user
+*     summary: Registers a new user
 *     tags: [Auth]
 *     requestBody:
 *       required: true
@@ -61,7 +80,7 @@ import authController from "../controllers/auth";
 *             schema:
 *               $ref: '#/components/schemas/User'
 */
-router.post("/register", authController.registeration);
+router.post("/register", authController.registration);
 
 /**
  * @swagger
@@ -76,7 +95,7 @@ router.post("/register", authController.registeration);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             $ref: '#/components/schemas/LoginRequest'
  *     responses:
  *       200:
  *         description: Successful login
@@ -167,6 +186,5 @@ router.post("/refresh", authController.refresh);
  *         description: Server error
  */
 router.post("/logout", authController.logout);
-
 
 export default router;

@@ -12,7 +12,7 @@ import Post from '../controllers/post';
 
 /**
  * @swagger
- * /post:
+ * /posts:
  *   get:
  *     summary: Get all posts
  *     tags: [Posts]
@@ -22,11 +22,11 @@ import Post from '../controllers/post';
  *       500:
  *         description: Server error
  */
-router.get('/', authMiddleware, Post.getPosts);
+router.get('/', Post.getPosts);
 
 /**
  * @swagger
- * /post/{id}:
+ * /posts/{id}:
  *   get:
  *     summary: Get post by ID
  *     tags: [Posts]
@@ -49,10 +49,12 @@ router.get('/:id', Post.getPostById);
 
 /**
  * @swagger
- * /post:
+ * /posts:
  *   post:
  *     summary: Add a new post
  *     tags: [Posts]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -76,10 +78,12 @@ router.post('/', authMiddleware, Post.addPost);
 
 /**
  * @swagger
- * /post/{id}:
+ * /posts/{id}:
  *   put:
  *     summary: Update a post
  *     tags: [Posts]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -109,5 +113,31 @@ router.post('/', authMiddleware, Post.addPost);
  *         description: Server error
  */
 router.put('/:id', authMiddleware, Post.updatePost);
+
+/**
+ * @swagger
+ * /posts/{id}:
+ *   delete:
+ *     summary: Delete a post
+ *     tags: [Posts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID of the post
+ *     responses:
+ *       200:
+ *         description: Post deleted successfully
+ *       404:
+ *         description: Post not found
+ *       500:
+ *         description: Server error
+ */
+
+router.delete('/:id', authMiddleware, Post.deletePost);
 
 export default router;
