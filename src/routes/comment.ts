@@ -1,8 +1,7 @@
 import express from 'express';
-import commentController from '../controllers/comment';
 import { authMiddleware } from '../controllers/auth';
-
 const router = express.Router();
+import commentController from '../controllers/comment';
 
 /**
  * @swagger
@@ -11,35 +10,44 @@ const router = express.Router();
  *   description: Comment management
  */
 
+
 /**
  * @swagger
  * /comments:
- *   post:
- *     summary: Add a new comment
+ *   get:
+ *     summary: Get all comments
  *     tags: [Comments]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               postId:
- *                 type: string
- *                 description: ID of the post
- *               content:
- *                 type: string
- *                 description: Content of the comment
- *               sender:
- *                 type: string
- *                 description: Sender of the comment
  *     responses:
- *       201:
- *         description: Comment created successfully
+ *       200:
+ *         description: List of comments
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   content:
+ *                     type: string
+ *                     description: Content of the comment
+ *                   sender:
+ *                     type: string
+ *                     description: Sender of the comment
+ *                   postId:
+ *                     type: string
+ *                     description: ID of the post
+ *                   createdAt:
+ *                     type: string
+ *                     format: date-time
+ *                     description: Creation date of the comment
+ *                   updatedAt:
+ *                     type: string
+ *                     format: date-time
+ *                     description: Last update date of the comment
  *       500:
  *         description: Server error
  */
-router.post('/', authMiddleware ,commentController.addComment);
+router.get('/', commentController.getComments);
 
 /**
  * @swagger
@@ -52,15 +60,73 @@ router.post('/', authMiddleware ,commentController.addComment);
  *         name: postId
  *         schema:
  *           type: string
- *         required: false
+ *         required: true
  *         description: ID of the post
  *     responses:
  *       200:
  *         description: List of comments
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   content:
+ *                     type: string
+ *                     description: Content of the comment
+ *                   sender:
+ *                     type: string
+ *                     description: Sender of the comment
+ *                   postId:
+ *                     type: string
+ *                     description: ID of the post
+ *                   createdAt:
+ *                     type: string
+ *                     format: date-time
+ *                     description: Creation date of the comment
+ *                   updatedAt:
+ *                     type: string
+ *                     format: date-time
+ *                     description: Last update date of the comment
+ *       404:
+ *         description: Post not found
  *       500:
  *         description: Server error
  */
-router.get('/:postId?', commentController.getComments);
+router.get('/:postId', commentController.getComments);
+
+/**
+ * @swagger
+ * /comments:
+ *   post:
+ *     summary: Add a new comment
+ *     tags: [Comments]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               content:
+ *                 type: string
+ *                 description: Content of the comment
+ *               sender:
+ *                 type: string
+ *                 description: Sender of the comment
+ *               postId:
+ *                 type: string
+ *                 description: ID of the post
+ *     responses:
+ *       201:
+ *         description: Comment created successfully
+ *       500:
+ *         description: Server error
+ */
+router.post('/', authMiddleware, commentController.addComment);
 
 /**
  * @swagger
@@ -68,6 +134,8 @@ router.get('/:postId?', commentController.getComments);
  *   put:
  *     summary: Update a comment
  *     tags: [Comments]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -85,6 +153,12 @@ router.get('/:postId?', commentController.getComments);
  *               content:
  *                 type: string
  *                 description: Updated content of the comment
+ *               sender:
+ *                 type: string
+ *                 description: Updated sender of the comment
+ *               postId:
+ *                 type: string
+ *                 description: ID of the post
  *     responses:
  *       200:
  *         description: Comment updated successfully
@@ -101,6 +175,8 @@ router.put('/:id', authMiddleware, commentController.updateComment);
  *   delete:
  *     summary: Delete a comment
  *     tags: [Comments]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -117,5 +193,6 @@ router.put('/:id', authMiddleware, commentController.updateComment);
  *         description: Server error
  */
 router.delete('/:id', authMiddleware, commentController.deleteComment);
+
 
 export default router;

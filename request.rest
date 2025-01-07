@@ -1,27 +1,50 @@
-######### Posts API
-
-### Get All Posts
-GET http://localhost:3000/post
-
-### Get Posts by Sender
-GET http://localhost:3000/post?sender=jeremingo
-
-### Get Post by ID
-GET http://localhost:3000/post/673b154e0001c161b0de4454
-
-######### Add Post
-POST http://localhost:3000/post
+### Register a New User
+POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
+  "email": "ohad@gmail.com",
+  "password": "password",
+  "username": "jeremingo"
+}
+
+######### Login logic
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email":"ohad@gmail.com",
+  "password":"password"
+}
+
+
+
+######### Posts API
+
+### Get All Posts
+GET http://localhost:3000/posts
+
+### Get Posts by Sender
+GET http://localhost:3000/posts?sender=jeremingo
+
+### Get Post by ID
+GET http://localhost:3000/posts/677c6b527b2d2d60eefc37f4
+
+######### Add Post
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdjNmIyMjdiMmQyZDYwZWVmYzM3ZjAiLCJ1c2VybmFtZSI6ImplcmVtaW5nbyIsInJhbmRvbSI6IjAuOTYwMTgzNjAzODM1NzEzOSIsImlhdCI6MTczNjIwNzE0MywiZXhwIjoxNzM2ODExOTQzfQ.OYhZNzfHjRhfxgg95S5r-bN-Ei3Nq1rHPa2ie_cbvTw  
+
+{
   "message": "This is the message of the sample post.",
-  "sender": "bobo"
+  "sender": "jeremingo"
 }
 
 
 ######### Update Specific Post
-PUT http://localhost:3000/post/673b154e0001c161b0de4454
+PUT http://localhost:3000/posts/677c6b527b2d2d60eefc37f4
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdjNmIyMjdiMmQyZDYwZWVmYzM3ZjAiLCJ1c2VybmFtZSI6ImplcmVtaW5nbyIsInJhbmRvbSI6IjAuOTYwMTgzNjAzODM1NzEzOSIsImlhdCI6MTczNjIwNzE0MywiZXhwIjoxNzM2ODExOTQzfQ.OYhZNzfHjRhfxgg95S5r-bN-Ei3Nq1rHPa2ie_cbvTw  
 
 {
   "message": "Updated Post message",
@@ -40,20 +63,24 @@ GET http://localhost:3000/comments/673b154e0001c161b0de4454
 ### Add Comment
 POST http://localhost:3000/comments
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdjNmIyMjdiMmQyZDYwZWVmYzM3ZjAiLCJ1c2VybmFtZSI6ImplcmVtaW5nbyIsInJhbmRvbSI6IjAuOTYwMTgzNjAzODM1NzEzOSIsImlhdCI6MTczNjIwNzE0MywiZXhwIjoxNzM2ODExOTQzfQ.OYhZNzfHjRhfxgg95S5r-bN-Ei3Nq1rHPa2ie_cbvTw  
 
 {
-  "postId": "673b157e0001c161b0de445a",
+  "postId": "677c6b527b2d2d60eefc37f4",
   "content": "This is another comment on the post.",
   "sender": "jeremingo"
 }
 
 ### Update a Comment
-PUT http://localhost:3000/comments/673b15850001c161b0de445c
+PUT http://localhost:3000/comments/677c6d3333646f563af8dc04
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdjNmIyMjdiMmQyZDYwZWVmYzM3ZjAiLCJ1c2VybmFtZSI6ImplcmVtaW5nbyIsInJhbmRvbSI6IjAuOTYwMTgzNjAzODM1NzEzOSIsImlhdCI6MTczNjIwNzE0MywiZXhwIjoxNzM2ODExOTQzfQ.OYhZNzfHjRhfxgg95S5r-bN-Ei3Nq1rHPa2ie_cbvTw  
 
 {
   "content": "Updated comment message."
 }
 
 ### Delete a Comment
-DELETE http://localhost:3000/comments/673b15850001c161b0de445c
+DELETE http://localhost:3000/comments/677c6d3333646f563af8dc04
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdjNmIyMjdiMmQyZDYwZWVmYzM3ZjAiLCJ1c2VybmFtZSI6ImplcmVtaW5nbyIsInJhbmRvbSI6IjAuOTYwMTgzNjAzODM1NzEzOSIsImlhdCI6MTczNjIwNzE0MywiZXhwIjoxNzM2ODExOTQzfQ.OYhZNzfHjRhfxgg95S5r-bN-Ei3Nq1rHPa2ie_cbvTw  
+

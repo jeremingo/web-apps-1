@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Document } from 'mongoose';
 
-const registeration = async (req: Request, res: Response) => {
+const registration = async (req: Request, res: Response) => {
     try {
         const username = req.body.username;
         const email = req.body.email;
@@ -79,12 +79,12 @@ const login = async (req: Request, res: Response) => {
         }
         user.refreshToken.push(authTokens.refreshToken);
         await user.save();
-        res.status(200).send(
-            {
-                accessToken: authTokens.accessToken,
-                refreshToken: authTokens.refreshToken,
-                _id: user._id
-            });
+        res.status(200).send({
+            accessToken: authTokens.accessToken,
+            refreshToken: authTokens.refreshToken,
+            _id: user._id,
+            username: user.username
+        });
 
     } catch (err) {
         res.status(400).send(err);
@@ -173,7 +173,8 @@ const refresh = async (req: Request, res: Response) => {
             {
                 accessToken: tokens.accessToken,
                 refreshToken: tokens.refreshToken,
-                _id: user._id
+                _id: user._id,
+                username: user.username
             });
         //send new token
     } catch (err) {
@@ -183,10 +184,11 @@ const refresh = async (req: Request, res: Response) => {
 
 type Payload = {
     _id: string;
+    username: string;
 };
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    const authorization = req.header('authorization');
+    const authorization = req.header('Authorization');
     const token = authorization && authorization.split(' ')[1];
 
     if (!token) {
@@ -198,7 +200,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
         return;
     }
 
-    jwt.verify(token, process.env.TOKEN_SECRET, (err: any, payload: Payload) => {
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, payload) => {
         if (err) {
             res.status(401).send('Access Denied');
             return;
@@ -209,7 +211,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
 };
 
 export default {
-    registeration,
+    registration,
     login,
     refresh,
     logout

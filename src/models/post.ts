@@ -13,6 +13,11 @@ const postSchema = new mongoose.Schema({
     sender: {
         type: String,
         required: true
+    },
+    userId: {
+        type: String,
+        ref: 'User',
+        required: true
     }
 });
 
