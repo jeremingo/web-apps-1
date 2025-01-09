@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: process.env.NODE_ENV ? `./.env_${process.env.NODE_ENV}` : "./.env" });
 
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
