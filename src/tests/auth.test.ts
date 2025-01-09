@@ -19,6 +19,7 @@ afterAll(async () => {
 });
 
 const baseUrl = "/auth";
+const postUrl = "/posts";
 
 type User = {
   username: string;
@@ -81,14 +82,14 @@ describe("Auth test suite", () => {
   });
 
   test("Test token access", async () => {
-    const response = await request(app).post("/post").send({
+    const response = await request(app).post(postUrl).send({
       title: "Test title",
       content: "Test content",
       owner: "Eliav",
     });
 
     expect(response.statusCode).not.toBe(201);
-    const response2 = await request(app).post("/post").set({
+    const response2 = await request(app).post(postUrl).set({
       authorization: "JWT " + testUser.accessToken,
     }).send({
       title: "Test title",
@@ -99,7 +100,7 @@ describe("Auth test suite", () => {
   });
 
   test("Test token access fail", async () => {
-    const response2 = await request(app).post("/post").set({
+    const response2 = await request(app).post(postUrl).set({
       authorization: "JWT " + testUser.accessToken + "f",
     }).send({
       title: "Test title",
@@ -168,7 +169,7 @@ describe("Auth test suite", () => {
 
     await new Promise((resolve) => setTimeout(resolve, 12000));
 
-    const response2 = await request(app).post("/posts").set({
+    const response2 = await request(app).post(postUrl).set({
       authorization: "JWT " + testUser.accessToken,
     }).send({
       title: "Test title",
@@ -184,7 +185,7 @@ describe("Auth test suite", () => {
     testUser.accessToken = response3.body.accessToken;
     testUser.refreshToken = response3.body.refreshToken;
 
-    const response4 = await request(app).post("/post").set({
+    const response4 = await request(app).post(postUrl).set({
       authorization: "JWT " + testUser.accessToken,
     }).send({
       title: "Test title",
