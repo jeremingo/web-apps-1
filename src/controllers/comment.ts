@@ -12,7 +12,10 @@ const addComment = async (req: Request, res: Response) => {
 
 const getComments = async (req: Request, res: Response) => {
   try {
-    const filter = req.params.postId ? { postId: req.params.postId } : {}; // Filter by postId if provided
+    const filter = {
+      ...req.params.postId && { postId: req.params.postId },
+      ...req.query.userId && { userId: req.query.userId } 
+    };
     const comments = await Comment.find(filter);
     res.status(200).json(comments);
   } catch (error) {
