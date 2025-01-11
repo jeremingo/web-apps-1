@@ -84,7 +84,6 @@ describe("Posts Tests", () => {
   test("Post update invalid id", async () => {
     const response = await request(app).put("/posts/677c6d3333646f563af8dc04")
     .set("Authorization", `Bearer ${token}`).send({ title: "new title" });
-    console.log(response.body)
     expect(response.statusCode).toBe(404);
   });
 
