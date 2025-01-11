@@ -85,7 +85,6 @@ describe("Auth test suite", () => {
     const response = await request(app).post(postUrl).send({
       title: "Test title",
       content: "Test content",
-      owner: "Eliav",
     });
 
     expect(response.statusCode).not.toBe(201);
@@ -94,7 +93,6 @@ describe("Auth test suite", () => {
     }).send({
       title: "Test title",
       content: "Test content",
-      owner: "Eliav",
     });
     expect(response2.statusCode).toBe(201);
   });
@@ -105,7 +103,6 @@ describe("Auth test suite", () => {
     }).send({
       title: "Test title",
       content: "Test content",
-      owner: "Eliav",
     });
     expect(response2.statusCode).not.toBe(201);
   })
@@ -174,7 +171,6 @@ describe("Auth test suite", () => {
     }).send({
       title: "Test title",
       content: "Test content",
-      owner: "Eliav",
     });
     expect(response2.statusCode).not.toBe(201);
 
@@ -190,7 +186,6 @@ describe("Auth test suite", () => {
     }).send({
       title: "Test title",
       content: "Test content",
-      owner: "Eliav",
     });
     expect(response4.statusCode).toBe(201);
   });

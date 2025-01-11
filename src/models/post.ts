@@ -1,21 +1,22 @@
 import mongoose from 'mongoose';
 
 export interface IPost {
-    message: string;
-    sender: string;
+    content: string;
+    title: string;
+    userId: mongoose.Schema.Types.ObjectId;
 }
 
-const postSchema = new mongoose.Schema({
-    message: {
+const postSchema = new mongoose.Schema<IPost>({
+    content: {
         type: String,
         required: true
     },
-    sender: {
+    title: {
         type: String,
         required: true
     },
     userId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     }

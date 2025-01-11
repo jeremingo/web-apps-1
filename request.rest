@@ -25,7 +25,7 @@ Content-Type: application/json
 GET http://localhost:3000/posts
 
 ### Get Posts by Sender
-GET http://localhost:3000/posts?sender=jeremingo
+GET http://localhost:3000/posts?userId=678288ea882121fb95a92042
 
 ### Get Post by ID
 GET http://localhost:3000/posts/677c6b527b2d2d60eefc37f4
@@ -33,22 +33,22 @@ GET http://localhost:3000/posts/677c6b527b2d2d60eefc37f4
 ######### Add Post
 POST http://localhost:3000/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdjNmIyMjdiMmQyZDYwZWVmYzM3ZjAiLCJ1c2VybmFtZSI6ImplcmVtaW5nbyIsInJhbmRvbSI6IjAuOTYwMTgzNjAzODM1NzEzOSIsImlhdCI6MTczNjIwNzE0MywiZXhwIjoxNzM2ODExOTQzfQ.OYhZNzfHjRhfxgg95S5r-bN-Ei3Nq1rHPa2ie_cbvTw  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzgwMGRjNjc1ZWQ2N2FkOGJiZWQxMDAiLCJyYW5kb20iOiIwLjMxMzk4NzIyNDEzMjY5NDY0IiwiaWF0IjoxNzM2NDQ1NTE0LCJleHAiOjE3MzY3MDQ3MTR9.8m26p2QpDIQ8nKNPm--7K1LTHwv73OSRZQQIE8qy1Ew 
 
 {
-  "message": "This is the message of the sample post.",
-  "sender": "jeremingo"
+  "content": "This is the message of the sample post.",
+  "title": "jeremingo"
 }
 
 
 ######### Update Specific Post
-PUT http://localhost:3000/posts/677c6b527b2d2d60eefc37f4
+PUT http://localhost:3000/posts/67800e6c73c00c39531955ed
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdjNmIyMjdiMmQyZDYwZWVmYzM3ZjAiLCJ1c2VybmFtZSI6ImplcmVtaW5nbyIsInJhbmRvbSI6IjAuOTYwMTgzNjAzODM1NzEzOSIsImlhdCI6MTczNjIwNzE0MywiZXhwIjoxNzM2ODExOTQzfQ.OYhZNzfHjRhfxgg95S5r-bN-Ei3Nq1rHPa2ie_cbvTw  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzgwMGRjNjc1ZWQ2N2FkOGJiZWQxMDAiLCJyYW5kb20iOiIwLjMxMzk4NzIyNDEzMjY5NDY0IiwiaWF0IjoxNzM2NDQ1NTE0LCJleHAiOjE3MzY3MDQ3MTR9.8m26p2QpDIQ8nKNPm--7K1LTHwv73OSRZQQIE8qy1Ew  
 
 {
-  "message": "Updated Post message",
-  "sender": "Updated sender"
+  "content": "Updated Post message",
+  "title": "Updated sender"
 }
 
 ######### Comments API
@@ -58,17 +58,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdjNmIyM
 GET http://localhost:3000/comments
 
 ### Get Comments by Post ID
-GET http://localhost:3000/comments/673b154e0001c161b0de4454
+GET http://localhost:3000/comments/67800e6c73c00c39531955ed
 
 ### Add Comment
 POST http://localhost:3000/comments
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzdjNmIyMjdiMmQyZDYwZWVmYzM3ZjAiLCJ1c2VybmFtZSI6ImplcmVtaW5nbyIsInJhbmRvbSI6IjAuOTYwMTgzNjAzODM1NzEzOSIsImlhdCI6MTczNjIwNzE0MywiZXhwIjoxNzM2ODExOTQzfQ.OYhZNzfHjRhfxgg95S5r-bN-Ei3Nq1rHPa2ie_cbvTw  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzgwMGRjNjc1ZWQ2N2FkOGJiZWQxMDAiLCJyYW5kb20iOiIwLjMxMzk4NzIyNDEzMjY5NDY0IiwiaWF0IjoxNzM2NDQ1NTE0LCJleHAiOjE3MzY3MDQ3MTR9.8m26p2QpDIQ8nKNPm--7K1LTHwv73OSRZQQIE8qy1Ew  
 
 {
-  "postId": "677c6b527b2d2d60eefc37f4",
+  "postId": "67800e6c73c00c39531955ed",
   "content": "This is another comment on the post.",
-  "sender": "jeremingo"
+  "userId": "67800dc675ed67ad8bbed100"
 }
 
 ### Update a Comment

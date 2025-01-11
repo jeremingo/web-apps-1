@@ -30,9 +30,9 @@ import commentController from '../controllers/comment';
  *                   content:
  *                     type: string
  *                     description: Content of the comment
- *                   sender:
+ *                   userId:
  *                     type: string
- *                     description: Sender of the comment
+ *                     description: ID of the user
  *                   postId:
  *                     type: string
  *                     description: ID of the post
@@ -75,9 +75,9 @@ router.get('/', commentController.getComments);
  *                   content:
  *                     type: string
  *                     description: Content of the comment
- *                   sender:
+ *                   userId:
  *                     type: string
- *                     description: Sender of the comment
+ *                     description: ID of the user
  *                   postId:
  *                     type: string
  *                     description: ID of the post
