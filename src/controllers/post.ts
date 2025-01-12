@@ -21,8 +21,6 @@ const getPostById = async (req: Request, res: Response) => {
 
 const addPost = async (req: Request & { user?: { _id: string, username: string } }, res: Response) => {
   try {
-      console.log(req.params); 
-      console.log(req.body);
       const userId = req.params.userId;
       const post = new Post({
           ...req.body,
