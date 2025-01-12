@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "nodemon src/app.ts",
     "start": "tsc && node dist/app.js",
-    "test": "copy .env_test .env && jest --detectOpenHandles --forceExit --runInBand",
-    "testAuth": "copy  .env_test .env && jest --detectOpenHandles --forceExit auth.test.ts",
-    "testPost": "copy  .env_test .env && jest --detectOpenHandles --forceExit posts.test.ts",
-    "testComment": "copy  .env_test .env && jest --detectOpenHandles --forceExit comments.test.ts"
+    "test": "jest --detectOpenHandles --forceExit --runInBand",
+    "testAuth": "jest --detectOpenHandles --forceExit auth.test.ts",
+    "testPost": "jest --detectOpenHandles --forceExit posts.test.ts",
+    "testComment": "jest --detectOpenHandles --forceExit comments.test.ts"
   },
   "repository": {
     "type": "git",

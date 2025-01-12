@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 
 const getPosts = async (req: Request, res: Response) => {
   try {
-    const filter = req.query.sender ? { sender: req.query.sender } : {};
+    const filter = req.query.userId ? { userId: req.query.userId } : {};
     const posts = await Post.find(filter);
     res.status(200).json(posts);
   } catch (err) {

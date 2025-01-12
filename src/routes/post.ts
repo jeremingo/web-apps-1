@@ -16,6 +16,13 @@ import Post from '../controllers/post';
  *   get:
  *     summary: Get all posts
  *     tags: [Posts]
+ *     parameters:
+ *       - in: query
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: Id of the user
  *     responses:
  *       200:
  *         description: List of posts
@@ -62,12 +69,12 @@ router.get('/:id', Post.getPostById);
  *           schema:
  *             type: object
  *             properties:
- *               message:
+ *               content:
  *                 type: string
- *                 description: Message of the post
- *               sender:
+ *                 description: content of the post
+ *               title:
  *                 type: string
- *                 description: Sender of the post
+ *                 description: Title of the post
  *     responses:
  *       201:
  *         description: Post created successfully
@@ -98,12 +105,12 @@ router.post('/', authMiddleware, Post.addPost);
  *           schema:
  *             type: object
  *             properties:
- *               message:
+ *               content:
  *                 type: string
- *                 description: Updated message of the post
- *               sender:
+ *                 description: Updated content of the post
+ *               title:
  *                 type: string
- *                 description: Updated sender of the post
+ *                 description: Updated title of the post
  *     responses:
  *       200:
  *         description: Post updated successfully
